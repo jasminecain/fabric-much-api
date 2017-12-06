@@ -1,0 +1,1216 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20171206164830)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206164830"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBolts (20171206164955)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "bolts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "fabric_type_id" integer, "fabric_name" varchar, "barcode" integer, "price" float, "quantity" float, "store" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_d13f8572f5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_112011c089"
+FOREIGN KEY ("fabric_type_id")
+  REFERENCES "fabric_types" ("id")
+)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "index_bolts_on_user_id" ON "bolts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_bolts_on_fabric_type_id" ON "bolts" ("fabric_type_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206164955"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFabrics (20171206165047)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "fabrics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "bolt_id" integer, "fabric_type_id" integer, "fabric_name" varchar, "barcode" integer, "price" float, "quantity" float, "store" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_0f1336276b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_395a7653e0"
+FOREIGN KEY ("bolt_id")
+  REFERENCES "bolts" ("id")
+, CONSTRAINT "fk_rails_6d0751377d"
+FOREIGN KEY ("fabric_type_id")
+  REFERENCES "fabric_types" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_fabrics_on_user_id" ON "fabrics" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_fabrics_on_bolt_id" ON "fabrics" ("bolt_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_fabrics_on_fabric_type_id" ON "fabrics" ("fabric_type_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206165047"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSwatches (20171206165129)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "swatches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "bolt_id" integer, "fabric_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_4cbcc6bba2"
+FOREIGN KEY ("bolt_id")
+  REFERENCES "bolts" ("id")
+, CONSTRAINT "fk_rails_22a990f00c"
+FOREIGN KEY ("fabric_id")
+  REFERENCES "fabrics" ("id")
+, CONSTRAINT "fk_rails_4640d984ce"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_swatches_on_bolt_id" ON "swatches" ("bolt_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_swatches_on_fabric_id" ON "swatches" ("fabric_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_swatches_on_user_id" ON "swatches" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206165129"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFabricTypes (20171206165140)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "fabric_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206165140"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-12-06 16:52:16.232828"], ["updated_at", "2017-12-06 16:52:16.232828"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateFabricTypes (20171206165140)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE "fabric_types"[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20171206165140"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSwatches (20171206165129)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "swatches"[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20171206165129"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateFabrics (20171206165047)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "fabrics"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20171206165047"]]
+  [1m[35m (6.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBolts (20171206164955)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "bolts"[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20171206164955"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBolts (20171206165524)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "bolts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "fabric_type_id" integer, "fabric_name" varchar, "barcode" integer, "price" float, "quantity" float, "store" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_d13f8572f5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_112011c089"
+FOREIGN KEY ("fabric_type_id")
+  REFERENCES "fabric_types" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_bolts_on_user_id" ON "bolts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_bolts_on_fabric_type_id" ON "bolts" ("fabric_type_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206165524"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFabrics (20171206165531)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "fabrics" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "bolt_id" integer, "fabric_type_id" integer, "fabric_name" varchar, "barcode" integer, "price" float, "quantity" float, "store" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_0f1336276b"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_395a7653e0"
+FOREIGN KEY ("bolt_id")
+  REFERENCES "bolts" ("id")
+, CONSTRAINT "fk_rails_6d0751377d"
+FOREIGN KEY ("fabric_type_id")
+  REFERENCES "fabric_types" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_fabrics_on_user_id" ON "fabrics" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_fabrics_on_bolt_id" ON "fabrics" ("bolt_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_fabrics_on_fabric_type_id" ON "fabrics" ("fabric_type_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206165531"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateSwatches (20171206165540)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "swatches" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "bolt_id" integer, "fabric_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_4cbcc6bba2"
+FOREIGN KEY ("bolt_id")
+  REFERENCES "bolts" ("id")
+, CONSTRAINT "fk_rails_22a990f00c"
+FOREIGN KEY ("fabric_id")
+  REFERENCES "fabrics" ("id")
+, CONSTRAINT "fk_rails_4640d984ce"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_swatches_on_bolt_id" ON "swatches" ("bolt_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_swatches_on_fabric_id" ON "swatches" ("fabric_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_swatches_on_user_id" ON "swatches" ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206165540"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFabricTypes (20171206165553)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "fabric_types" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "category" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171206165553"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:46:42.636750"], ["updated_at", "2017-12-06 17:46:42.636750"]]
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:47:25.832852"], ["updated_at", "2017-12-06 17:47:25.832852"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:49:01.894025"], ["updated_at", "2017-12-06 17:49:01.894025"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Cotton"], ["created_at", "2017-12-06 17:49:01.901203"], ["updated_at", "2017-12-06 17:49:01.901203"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Licensed Fabric"], ["created_at", "2017-12-06 17:49:01.902878"], ["updated_at", "2017-12-06 17:49:01.902878"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Character Fabric"], ["created_at", "2017-12-06 17:49:01.904319"], ["updated_at", "2017-12-06 17:49:01.904319"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Nursery"], ["created_at", "2017-12-06 17:49:01.905846"], ["updated_at", "2017-12-06 17:49:01.905846"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Team Fabric"], ["created_at", "2017-12-06 17:49:01.907179"], ["updated_at", "2017-12-06 17:49:01.907179"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Flannel"], ["created_at", "2017-12-06 17:49:01.908543"], ["updated_at", "2017-12-06 17:49:01.908543"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Felt"], ["created_at", "2017-12-06 17:49:01.909966"], ["updated_at", "2017-12-06 17:49:01.909966"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Fleece"], ["created_at", "2017-12-06 17:49:01.911669"], ["updated_at", "2017-12-06 17:49:01.911669"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Holiday"], ["created_at", "2017-12-06 17:49:01.913334"], ["updated_at", "2017-12-06 17:49:01.913334"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Premium Cotton"], ["created_at", "2017-12-06 17:49:01.915314"], ["updated_at", "2017-12-06 17:49:01.915314"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 1], ["fabric_name", "Purple"], ["barcode", 123456789], ["price", 12.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:49:01.939417"], ["updated_at", "2017-12-06 17:49:01.939417"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 2], ["fabric_name", "Indigo"], ["barcode", 234567891], ["price", 3.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:49:01.944257"], ["updated_at", "2017-12-06 17:49:01.944257"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 3], ["fabric_name", "Brown"], ["barcode", 345678912], ["price", 8.99], ["quantity", 2.0], ["store", "Fabric.com"], ["created_at", "2017-12-06 17:49:01.948496"], ["updated_at", "2017-12-06 17:49:01.948496"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 4], ["fabric_name", "Black"], ["barcode", 456789123], ["price", 11.99], ["quantity", 2.0], ["store", "Hobby Lobby"], ["created_at", "2017-12-06 17:49:01.952473"], ["updated_at", "2017-12-06 17:49:01.952473"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 5], ["fabric_name", "White"], ["barcode", 567891234], ["price", 7.99], ["quantity", 2.0], ["store", "Walmart"], ["created_at", "2017-12-06 17:49:01.955911"], ["updated_at", "2017-12-06 17:49:01.955911"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:49:34.510992"], ["updated_at", "2017-12-06 17:49:34.510992"]]
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Cotton"], ["created_at", "2017-12-06 17:49:34.525501"], ["updated_at", "2017-12-06 17:49:34.525501"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Licensed Fabric"], ["created_at", "2017-12-06 17:49:34.527367"], ["updated_at", "2017-12-06 17:49:34.527367"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Character Fabric"], ["created_at", "2017-12-06 17:49:34.528634"], ["updated_at", "2017-12-06 17:49:34.528634"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Nursery"], ["created_at", "2017-12-06 17:49:34.529919"], ["updated_at", "2017-12-06 17:49:34.529919"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Team Fabric"], ["created_at", "2017-12-06 17:49:34.531219"], ["updated_at", "2017-12-06 17:49:34.531219"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Flannel"], ["created_at", "2017-12-06 17:49:34.532500"], ["updated_at", "2017-12-06 17:49:34.532500"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Felt"], ["created_at", "2017-12-06 17:49:34.533892"], ["updated_at", "2017-12-06 17:49:34.533892"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Fleece"], ["created_at", "2017-12-06 17:49:34.535250"], ["updated_at", "2017-12-06 17:49:34.535250"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Holiday"], ["created_at", "2017-12-06 17:49:34.536572"], ["updated_at", "2017-12-06 17:49:34.536572"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Premium Cotton"], ["created_at", "2017-12-06 17:49:34.537987"], ["updated_at", "2017-12-06 17:49:34.537987"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 1], ["fabric_name", "Purple"], ["barcode", 123456789], ["price", 12.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:49:34.557531"], ["updated_at", "2017-12-06 17:49:34.557531"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 2], ["fabric_name", "Indigo"], ["barcode", 234567891], ["price", 3.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:49:34.560925"], ["updated_at", "2017-12-06 17:49:34.560925"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 3], ["fabric_name", "Brown"], ["barcode", 345678912], ["price", 8.99], ["quantity", 2.0], ["store", "Fabric.com"], ["created_at", "2017-12-06 17:49:34.563836"], ["updated_at", "2017-12-06 17:49:34.563836"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 4], ["fabric_name", "Black"], ["barcode", 456789123], ["price", 11.99], ["quantity", 2.0], ["store", "Hobby Lobby"], ["created_at", "2017-12-06 17:49:34.566801"], ["updated_at", "2017-12-06 17:49:34.566801"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 5], ["fabric_name", "White"], ["barcode", 567891234], ["price", 7.99], ["quantity", 2.0], ["store", "Walmart"], ["created_at", "2017-12-06 17:49:34.569686"], ["updated_at", "2017-12-06 17:49:34.569686"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 6], ["fabric_type_id", 1], ["fabric_name", "Red"], ["barcode", 123456789], ["price", 10.99], ["quantity", 3.25], ["store", "Joann's"], ["created_at", "2017-12-06 17:49:34.586258"], ["updated_at", "2017-12-06 17:49:34.586258"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 7], ["fabric_type_id", 2], ["fabric_name", "Orange"], ["barcode", 234567891], ["price", 4.99], ["quantity", 1.5], ["store", "Hobby Lobby"], ["created_at", "2017-12-06 17:49:34.591167"], ["updated_at", "2017-12-06 17:49:34.591167"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 8], ["fabric_type_id", 3], ["fabric_name", "Yellow"], ["barcode", 345678912], ["price", 6.99], ["quantity", 2.75], ["store", "Walmart"], ["created_at", "2017-12-06 17:49:34.595986"], ["updated_at", "2017-12-06 17:49:34.595986"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 9], ["fabric_type_id", 4], ["fabric_name", "Green"], ["barcode", 456789123], ["price", 8.99], ["quantity", 1.0], ["store", "Fabric.com"], ["created_at", "2017-12-06 17:49:34.600948"], ["updated_at", "2017-12-06 17:49:34.600948"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.0ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 10], ["fabric_type_id", 5], ["fabric_name", "Blue"], ["barcode", 567891234], ["price", 5.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:49:34.605480"], ["updated_at", "2017-12-06 17:49:34.605480"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 1], ["fabric_id", 1], ["user_id", 1], ["created_at", "2017-12-06 17:49:34.622701"], ["updated_at", "2017-12-06 17:49:34.622701"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 2], ["fabric_id", 2], ["user_id", 1], ["created_at", "2017-12-06 17:49:34.629874"], ["updated_at", "2017-12-06 17:49:34.629874"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.0ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 3], ["fabric_id", 3], ["user_id", 1], ["created_at", "2017-12-06 17:49:34.633514"], ["updated_at", "2017-12-06 17:49:34.633514"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.0ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 4], ["fabric_id", 4], ["user_id", 1], ["created_at", "2017-12-06 17:49:34.636981"], ["updated_at", "2017-12-06 17:49:34.636981"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 5], ["fabric_id", 5], ["user_id", 1], ["created_at", "2017-12-06 17:49:34.640253"], ["updated_at", "2017-12-06 17:49:34.640253"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:50:05.329692"], ["updated_at", "2017-12-06 17:50:05.329692"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Cotton"], ["created_at", "2017-12-06 17:50:05.337549"], ["updated_at", "2017-12-06 17:50:05.337549"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Licensed Fabric"], ["created_at", "2017-12-06 17:50:05.339475"], ["updated_at", "2017-12-06 17:50:05.339475"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Character Fabric"], ["created_at", "2017-12-06 17:50:05.341047"], ["updated_at", "2017-12-06 17:50:05.341047"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Nursery"], ["created_at", "2017-12-06 17:50:05.342729"], ["updated_at", "2017-12-06 17:50:05.342729"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Team Fabric"], ["created_at", "2017-12-06 17:50:05.344164"], ["updated_at", "2017-12-06 17:50:05.344164"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Flannel"], ["created_at", "2017-12-06 17:50:05.345569"], ["updated_at", "2017-12-06 17:50:05.345569"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Felt"], ["created_at", "2017-12-06 17:50:05.346958"], ["updated_at", "2017-12-06 17:50:05.346958"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Fleece"], ["created_at", "2017-12-06 17:50:05.348294"], ["updated_at", "2017-12-06 17:50:05.348294"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Holiday"], ["created_at", "2017-12-06 17:50:05.349774"], ["updated_at", "2017-12-06 17:50:05.349774"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Premium Cotton"], ["created_at", "2017-12-06 17:50:05.351295"], ["updated_at", "2017-12-06 17:50:05.351295"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 1], ["fabric_name", "Purple"], ["barcode", 123456789], ["price", 12.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:50:05.374483"], ["updated_at", "2017-12-06 17:50:05.374483"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 2], ["fabric_name", "Indigo"], ["barcode", 234567891], ["price", 3.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:50:05.378627"], ["updated_at", "2017-12-06 17:50:05.378627"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 3], ["fabric_name", "Brown"], ["barcode", 345678912], ["price", 8.99], ["quantity", 2.0], ["store", "Fabric.com"], ["created_at", "2017-12-06 17:50:05.382135"], ["updated_at", "2017-12-06 17:50:05.382135"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 4], ["fabric_name", "Black"], ["barcode", 456789123], ["price", 11.99], ["quantity", 2.0], ["store", "Hobby Lobby"], ["created_at", "2017-12-06 17:50:05.385158"], ["updated_at", "2017-12-06 17:50:05.385158"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 5], ["fabric_name", "White"], ["barcode", 567891234], ["price", 7.99], ["quantity", 2.0], ["store", "Walmart"], ["created_at", "2017-12-06 17:50:05.387981"], ["updated_at", "2017-12-06 17:50:05.387981"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 6], ["fabric_type_id", 1], ["fabric_name", "Red"], ["barcode", 123456789], ["price", 10.99], ["quantity", 3.25], ["store", "Joann's"], ["created_at", "2017-12-06 17:50:05.410218"], ["updated_at", "2017-12-06 17:50:05.410218"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 7], ["fabric_type_id", 2], ["fabric_name", "Orange"], ["barcode", 234567891], ["price", 4.99], ["quantity", 1.5], ["store", "Hobby Lobby"], ["created_at", "2017-12-06 17:50:05.415931"], ["updated_at", "2017-12-06 17:50:05.415931"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.0ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 8], ["fabric_type_id", 3], ["fabric_name", "Yellow"], ["barcode", 345678912], ["price", 6.99], ["quantity", 2.75], ["store", "Walmart"], ["created_at", "2017-12-06 17:50:05.420586"], ["updated_at", "2017-12-06 17:50:05.420586"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 9], ["fabric_type_id", 4], ["fabric_name", "Green"], ["barcode", 456789123], ["price", 8.99], ["quantity", 1.0], ["store", "Fabric.com"], ["created_at", "2017-12-06 17:50:05.424782"], ["updated_at", "2017-12-06 17:50:05.424782"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabrics" ("user_id", "bolt_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["bolt_id", 10], ["fabric_type_id", 5], ["fabric_name", "Blue"], ["barcode", 567891234], ["price", 5.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:50:05.431272"], ["updated_at", "2017-12-06 17:50:05.431272"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 1], ["fabric_id", 1], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.444915"], ["updated_at", "2017-12-06 17:50:05.444915"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 2], ["fabric_id", 2], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.449803"], ["updated_at", "2017-12-06 17:50:05.449803"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.0ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 3], ["fabric_id", 3], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.453892"], ["updated_at", "2017-12-06 17:50:05.453892"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 4], ["fabric_id", 4], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.458179"], ["updated_at", "2017-12-06 17:50:05.458179"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 5], ["fabric_id", 5], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.462917"], ["updated_at", "2017-12-06 17:50:05.462917"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.0ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 6], ["fabric_id", 1], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.466882"], ["updated_at", "2017-12-06 17:50:05.466882"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 7], ["fabric_id", 2], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.470674"], ["updated_at", "2017-12-06 17:50:05.470674"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.0ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 8], ["fabric_id", 3], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.474161"], ["updated_at", "2017-12-06 17:50:05.474161"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.0ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 9], ["fabric_id", 4], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.477559"], ["updated_at", "2017-12-06 17:50:05.477559"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBolt Load (0.1ms)[0m  [1m[34mSELECT  "bolts".* FROM "bolts" WHERE "bolts"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mFabric Load (0.0ms)[0m  [1m[34mSELECT  "fabrics".* FROM "fabrics" WHERE "fabrics"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "swatches" ("bolt_id", "fabric_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bolt_id", 10], ["fabric_id", 5], ["user_id", 1], ["created_at", "2017-12-06 17:50:05.480949"], ["updated_at", "2017-12-06 17:50:05.480949"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "bolts"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "fabrics"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "swatches"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "fabric_types"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:51:39.623986"], ["updated_at", "2017-12-06 17:51:39.623986"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Cotton"], ["created_at", "2017-12-06 17:51:39.635631"], ["updated_at", "2017-12-06 17:51:39.635631"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Licensed Fabric"], ["created_at", "2017-12-06 17:51:39.637606"], ["updated_at", "2017-12-06 17:51:39.637606"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Character Fabric"], ["created_at", "2017-12-06 17:51:39.638994"], ["updated_at", "2017-12-06 17:51:39.638994"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Nursery"], ["created_at", "2017-12-06 17:51:39.640180"], ["updated_at", "2017-12-06 17:51:39.640180"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Team Fabric"], ["created_at", "2017-12-06 17:51:39.641570"], ["updated_at", "2017-12-06 17:51:39.641570"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Flannel"], ["created_at", "2017-12-06 17:51:39.643269"], ["updated_at", "2017-12-06 17:51:39.643269"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Felt"], ["created_at", "2017-12-06 17:51:39.644835"], ["updated_at", "2017-12-06 17:51:39.644835"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Fleece"], ["created_at", "2017-12-06 17:51:39.646321"], ["updated_at", "2017-12-06 17:51:39.646321"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Holiday"], ["created_at", "2017-12-06 17:51:39.648283"], ["updated_at", "2017-12-06 17:51:39.648283"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Premium Cotton"], ["created_at", "2017-12-06 17:51:39.649987"], ["updated_at", "2017-12-06 17:51:39.649987"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:51:54.841612"], ["updated_at", "2017-12-06 17:51:54.841612"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Cotton"], ["created_at", "2017-12-06 17:51:54.849266"], ["updated_at", "2017-12-06 17:51:54.849266"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Licensed Fabric"], ["created_at", "2017-12-06 17:51:54.850957"], ["updated_at", "2017-12-06 17:51:54.850957"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Character Fabric"], ["created_at", "2017-12-06 17:51:54.852398"], ["updated_at", "2017-12-06 17:51:54.852398"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Nursery"], ["created_at", "2017-12-06 17:51:54.854062"], ["updated_at", "2017-12-06 17:51:54.854062"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Team Fabric"], ["created_at", "2017-12-06 17:51:54.856351"], ["updated_at", "2017-12-06 17:51:54.856351"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Flannel"], ["created_at", "2017-12-06 17:51:54.857911"], ["updated_at", "2017-12-06 17:51:54.857911"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Felt"], ["created_at", "2017-12-06 17:51:54.859414"], ["updated_at", "2017-12-06 17:51:54.859414"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Fleece"], ["created_at", "2017-12-06 17:51:54.860816"], ["updated_at", "2017-12-06 17:51:54.860816"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Holiday"], ["created_at", "2017-12-06 17:51:54.862332"], ["updated_at", "2017-12-06 17:51:54.862332"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Premium Cotton"], ["created_at", "2017-12-06 17:51:54.864123"], ["updated_at", "2017-12-06 17:51:54.864123"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:52:22.828743"], ["updated_at", "2017-12-06 17:52:22.828743"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Cotton"], ["created_at", "2017-12-06 17:52:22.838868"], ["updated_at", "2017-12-06 17:52:22.838868"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Licensed Fabric"], ["created_at", "2017-12-06 17:52:22.840974"], ["updated_at", "2017-12-06 17:52:22.840974"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Character Fabric"], ["created_at", "2017-12-06 17:52:22.842621"], ["updated_at", "2017-12-06 17:52:22.842621"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Nursery"], ["created_at", "2017-12-06 17:52:22.844082"], ["updated_at", "2017-12-06 17:52:22.844082"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Team Fabric"], ["created_at", "2017-12-06 17:52:22.845453"], ["updated_at", "2017-12-06 17:52:22.845453"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Flannel"], ["created_at", "2017-12-06 17:52:22.846802"], ["updated_at", "2017-12-06 17:52:22.846802"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Felt"], ["created_at", "2017-12-06 17:52:22.848530"], ["updated_at", "2017-12-06 17:52:22.848530"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Fleece"], ["created_at", "2017-12-06 17:52:22.849957"], ["updated_at", "2017-12-06 17:52:22.849957"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Holiday"], ["created_at", "2017-12-06 17:52:22.851607"], ["updated_at", "2017-12-06 17:52:22.851607"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Premium Cotton"], ["created_at", "2017-12-06 17:52:22.853057"], ["updated_at", "2017-12-06 17:52:22.853057"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (5164.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:53:12.627980"], ["updated_at", "2017-12-06 17:53:12.627980"]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:54:10.746457"], ["updated_at", "2017-12-06 17:54:10.746457"]]
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Cotton"], ["created_at", "2017-12-06 17:54:10.755495"], ["updated_at", "2017-12-06 17:54:10.755495"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Licensed Fabric"], ["created_at", "2017-12-06 17:54:10.757821"], ["updated_at", "2017-12-06 17:54:10.757821"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Character Fabric"], ["created_at", "2017-12-06 17:54:10.760381"], ["updated_at", "2017-12-06 17:54:10.760381"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Nursery"], ["created_at", "2017-12-06 17:54:10.762586"], ["updated_at", "2017-12-06 17:54:10.762586"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Team Fabric"], ["created_at", "2017-12-06 17:54:10.765084"], ["updated_at", "2017-12-06 17:54:10.765084"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Flannel"], ["created_at", "2017-12-06 17:54:10.767137"], ["updated_at", "2017-12-06 17:54:10.767137"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Felt"], ["created_at", "2017-12-06 17:54:10.769536"], ["updated_at", "2017-12-06 17:54:10.769536"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Fleece"], ["created_at", "2017-12-06 17:54:10.771003"], ["updated_at", "2017-12-06 17:54:10.771003"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Holiday"], ["created_at", "2017-12-06 17:54:10.772800"], ["updated_at", "2017-12-06 17:54:10.772800"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Premium Cotton"], ["created_at", "2017-12-06 17:54:10.775503"], ["updated_at", "2017-12-06 17:54:10.775503"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_bolts_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_fabric_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_swatches_on_bolt_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@testers.com"], ["password", "password"], ["created_at", "2017-12-06 17:56:45.152179"], ["updated_at", "2017-12-06 17:56:45.152179"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Cotton"], ["created_at", "2017-12-06 17:56:45.165903"], ["updated_at", "2017-12-06 17:56:45.165903"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Licensed Fabric"], ["created_at", "2017-12-06 17:56:45.167865"], ["updated_at", "2017-12-06 17:56:45.167865"]]
+  [1m[35m (0.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Character Fabric"], ["created_at", "2017-12-06 17:56:45.169174"], ["updated_at", "2017-12-06 17:56:45.169174"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Nursery"], ["created_at", "2017-12-06 17:56:45.170647"], ["updated_at", "2017-12-06 17:56:45.170647"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Team Fabric"], ["created_at", "2017-12-06 17:56:45.171954"], ["updated_at", "2017-12-06 17:56:45.171954"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Flannel"], ["created_at", "2017-12-06 17:56:45.173205"], ["updated_at", "2017-12-06 17:56:45.173205"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Felt"], ["created_at", "2017-12-06 17:56:45.174643"], ["updated_at", "2017-12-06 17:56:45.174643"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Fleece"], ["created_at", "2017-12-06 17:56:45.175984"], ["updated_at", "2017-12-06 17:56:45.175984"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Holiday"], ["created_at", "2017-12-06 17:56:45.177344"], ["updated_at", "2017-12-06 17:56:45.177344"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fabric_types" ("category", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["category", "Premium Cotton"], ["created_at", "2017-12-06 17:56:45.178702"], ["updated_at", "2017-12-06 17:56:45.178702"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 1], ["fabric_name", "Purple"], ["barcode", 123456789], ["price", 12.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:56:45.197752"], ["updated_at", "2017-12-06 17:56:45.197752"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "bolts" ("user_id", "fabric_type_id", "fabric_name", "barcode", "price", "quantity", "store", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["fabric_type_id", 2], ["fabric_name", "Indigo"], ["barcode", 234567891], ["price", 3.99], ["quantity", 2.0], ["store", "Joann's"], ["created_at", "2017-12-06 17:56:45.200824"], ["updated_at", "2017-12-06 17:56:45.200824"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bolt: one
+  fabric: one
+  user: one
+
+two:
+  bolt: two
+  fabric: two
+  user: two
