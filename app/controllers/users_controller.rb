@@ -10,7 +10,10 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    @fabrics = @user.fabrics
+    @bolts = @user.bolts
+    @swatches = @user.swatches
+    render json: {fabrics: @fabrics, bolts: @bolts, swatches: @swatches}
   end
 
   # POST /users
