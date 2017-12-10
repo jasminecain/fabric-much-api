@@ -6199,3 +6199,311 @@ Processing by ItemsController#index as */*
 Completed 200 OK in 9ms (Views: 4.4ms | ActiveRecord: 0.9ms)
 
 
+Started GET "/items" for 127.0.0.1 at 2017-12-09 12:56:15 -0600
+Processing by ItemsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 2.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2017-12-09 12:56:15 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/items" for 127.0.0.1 at 2017-12-09 12:56:18 -0600
+Processing by ItemsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-12-09 14:51:33 -0600
+Processing by UsersController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-12-09 14:51:37 -0600
+Processing by UsersController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-12-09 16:04:11 -0600
+Processing by UsersController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:04:13 -0600
+Processing by FabricsController#index as HTML
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-09 16:04:13 -0600
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms)
+
+
+Processing by FabricTypesController#index as HTML
+Started GET "/swatches" for 127.0.0.1 at 2017-12-09 16:04:13 -0600
+Started GET "/bolts" for 127.0.0.1 at 2017-12-09 16:04:13 -0600
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms)
+
+
+Processing by BoltsController#index as HTML
+Processing by SwatchesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Started GET "/bolts" for 127.0.0.1 at 2017-12-09 16:05:23 -0600
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:05:23 -0600
+Processing by BoltsController#index as HTML
+Started GET "/swatches" for 127.0.0.1 at 2017-12-09 16:05:23 -0600
+Processing by FabricsController#index as HTML
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-09 16:05:23 -0600
+Filter chain halted as :authenticate_request rendered or redirected
+Processing by SwatchesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Processing by FabricTypesController#index as HTML
+Completed 401 Unauthorized in 3ms (Views: 0.2ms)
+
+
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms)
+
+
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:06:27 -0600
+Started GET "/bolts" for 127.0.0.1 at 2017-12-09 16:06:27 -0600
+Started GET "/swatches" for 127.0.0.1 at 2017-12-09 16:06:27 -0600
+Processing by FabricsController#index as HTML
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-09 16:06:27 -0600
+Processing by BoltsController#index as HTML
+Processing by SwatchesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Processing by FabricTypesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms)
+
+
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:06:39 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms)
+
+
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-09 16:06:39 -0600
+Started GET "/bolts" for 127.0.0.1 at 2017-12-09 16:06:39 -0600
+Started GET "/swatches" for 127.0.0.1 at 2017-12-09 16:06:39 -0600
+Processing by FabricTypesController#index as HTML
+Processing by BoltsController#index as HTML
+Processing by SwatchesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Filter chain halted as :authenticate_request rendered or redirected
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 2.9ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:08:28 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms)
+
+
+Started GET "/bolts" for 127.0.0.1 at 2017-12-09 16:08:28 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-09 16:08:28 -0600
+Started GET "/swatches" for 127.0.0.1 at 2017-12-09 16:08:28 -0600
+Processing by BoltsController#index as HTML
+Processing by FabricTypesController#index as HTML
+Processing by SwatchesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Filter chain halted as :authenticate_request rendered or redirected
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:16:06 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms)
+
+
+Started GET "/%20+%20fabrics" for 127.0.0.1 at 2017-12-09 16:39:16 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/%20+%20fabrics"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/%20+%20fabrics" for 127.0.0.1 at 2017-12-09 16:39:37 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/%20+%20fabrics"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:40:19 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:40:20 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:41:21 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:42:45 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 16:43:04 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 18:00:24 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.1ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-09 18:01:27 -0600
+Processing by FabricsController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-12-09 18:01:41 -0600
+Processing by UsersController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2017-12-09 18:01:42 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
