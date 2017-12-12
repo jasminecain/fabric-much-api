@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   resources :fabrics
   resources :bolts
   resources :users
-  post 'authenticate', to: 'authentication#authenticate'
+  post 'authenticate', to: 'authentication#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
