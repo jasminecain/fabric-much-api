@@ -4,7 +4,8 @@ class SwatchesController < ApplicationController
   # GET /swatches
   def index
     @swatches = Swatch.all
-
+    # @swatches = @swatches.fabrics
+    # fabrics: @fabrics
     render json: @swatches
   end
 

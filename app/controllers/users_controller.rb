@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_request, only: [:create]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -10,7 +11,10 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    @fabrics = @user.fabrics
+    @bolts = @user.bolts
+    @swatches = @user.swatches
+    render json: {fabrics: @fabrics, bolts: @bolts, swatches: @swatches}
   end
 
   # POST /users
@@ -46,6 +50,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password
+      )
     end
 end

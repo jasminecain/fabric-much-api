@@ -43,9 +43,11 @@ FabricType.create!([{
   category: "Premium Cotton"
 }])
 
+@fabric_type = FabricType.first
+
 Bolt.create!([{
   user_id: "1",
-  fabric_type_id: "1",
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Purple",
   barcode: 123456789,
   price: 12.99,
@@ -53,7 +55,7 @@ Bolt.create!([{
   store: "Joann's"
 },{
   user_id: "1",
-  fabric_type_id: "2",
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Indigo",
   barcode: 234567891,
   price: 3.99,
@@ -62,7 +64,7 @@ Bolt.create!([{
 },
 {
   user_id: "1",
-  fabric_type_id: "3",
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Brown",
   barcode: 345678912,
   price: 8.99,
@@ -71,7 +73,7 @@ Bolt.create!([{
 },
 {
   user_id: "1",
-  fabric_type_id: "4",
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Black",
   barcode: 456789123,
   price: 11.99,
@@ -80,7 +82,7 @@ Bolt.create!([{
 },
 {
   user_id: "1",
-  fabric_type_id: "5",
+  fabric_type_id: @fabric_type.id,
   fabric_name: "White",
   barcode: 567891234,
   price: 7.99,
@@ -88,10 +90,12 @@ Bolt.create!([{
   store: "Walmart"
 }])
 
+@bolt = Bolt.first
+
 Fabric.create!([{
   user_id: 1,
-  bolt_id: "6",
-  fabric_type_id: "1",
+  bolt_id: @bolt.id,
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Red",
   barcode: 123456789,
   price: 10.99,
@@ -100,8 +104,8 @@ Fabric.create!([{
 },
 {
   user_id: 1,
-  bolt_id: "7",
-  fabric_type_id: "2",
+  bolt_id: @bolt.id,
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Orange",
   barcode: 234567891,
   price: 4.99,
@@ -110,8 +114,8 @@ Fabric.create!([{
 },
 {
   user_id: 1,
-  bolt_id: "8",
-  fabric_type_id: "3",
+  bolt_id: @bolt.id,
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Yellow",
   barcode: 345678912,
   price: 6.99,
@@ -120,8 +124,8 @@ Fabric.create!([{
 },
 {
   user_id: 1,
-  bolt_id: "9",
-  fabric_type_id: "4",
+  bolt_id: @bolt.id,
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Green",
   barcode: 456789123,
   price: 8.99,
@@ -130,8 +134,8 @@ Fabric.create!([{
 },
 {
   user_id: 1,
-  bolt_id: "10",
-  fabric_type_id: "5",
+  bolt_id: @bolt.id,
+  fabric_type_id: @fabric_type.id,
   fabric_name: "Blue",
   barcode: 567891234,
   price: 5.99,
@@ -140,53 +144,53 @@ Fabric.create!([{
 }])
 
 Swatch.create!([{
-  bolt_id: "1",
-  fabric_id: "1",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "2",
-  fabric_id: "2",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "3",
-  fabric_id: "3",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "4",
-  fabric_id: "4",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "5",
-  fabric_id: "5",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "6",
-  fabric_id: "1",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "7",
-  fabric_id: "2",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "8",
-  fabric_id: "3",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "9",
-  fabric_id: "4",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: "10",
-  fabric_id: "5",
+  bolt_id: @bolt.id,
+  fabric_id: @fabric_type.id,
   user_id: 1
 }])
 
