@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207214634) do
+ActiveRecord::Schema.define(version: 20171214041754) do
 
   create_table "bolts", force: :cascade do |t|
     t.integer "user_id"
@@ -27,14 +27,13 @@ ActiveRecord::Schema.define(version: 20171207214634) do
   end
 
   create_table "fabric_types", force: :cascade do |t|
-    t.string "category"
+    t.string "fabric_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "fabrics", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "bolt_id"
     t.integer "fabric_type_id"
     t.string "fabric_name"
     t.integer "barcode"
@@ -43,7 +42,6 @@ ActiveRecord::Schema.define(version: 20171207214634) do
     t.string "store"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bolt_id"], name: "index_fabrics_on_bolt_id"
     t.index ["fabric_type_id"], name: "index_fabrics_on_fabric_type_id"
     t.index ["user_id"], name: "index_fabrics_on_user_id"
   end
