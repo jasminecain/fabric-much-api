@@ -13,34 +13,34 @@ User.create!([{
 }])
 
 FabricType.create!([{
-  category: "Cotton"
+  fabric_type: "Cotton"
 },
 {
-  category: "Licensed Fabric"
+  fabric_type: "Licensed Fabric"
 },
 {
-  category: "Character Fabric"
+  fabric_type: "Character Fabric"
 },
 {
-  category: "Nursery"
+  fabric_type: "Nursery"
 },
 {
-  category: "Team Fabric"
+  fabric_type: "Team Fabric"
 },
 {
-  category: "Flannel"
+  fabric_type: "Flannel"
 },
 {
-  category: "Felt"
+  fabric_type: "Felt"
 },
 {
-  category: "Fleece"
+  fabric_type: "Fleece"
 },
 {
-  category: "Holiday"
+  fabric_type: "Holiday"
 },
 {
-  category: "Premium Cotton"
+  fabric_type: "Premium Cotton"
 }])
 
 @fabric_type = FabricType.first
@@ -90,11 +90,8 @@ Bolt.create!([{
   store: "Walmart"
 }])
 
-@bolt = Bolt.first
-
 Fabric.create!([{
   user_id: 1,
-  bolt_id: @bolt.id,
   fabric_type_id: @fabric_type.id,
   fabric_name: "Red",
   barcode: 123456789,
@@ -104,7 +101,6 @@ Fabric.create!([{
 },
 {
   user_id: 1,
-  bolt_id: @bolt.id,
   fabric_type_id: @fabric_type.id,
   fabric_name: "Orange",
   barcode: 234567891,
@@ -114,7 +110,6 @@ Fabric.create!([{
 },
 {
   user_id: 1,
-  bolt_id: @bolt.id,
   fabric_type_id: @fabric_type.id,
   fabric_name: "Yellow",
   barcode: 345678912,
@@ -124,7 +119,6 @@ Fabric.create!([{
 },
 {
   user_id: 1,
-  bolt_id: @bolt.id,
   fabric_type_id: @fabric_type.id,
   fabric_name: "Green",
   barcode: 456789123,
@@ -134,7 +128,6 @@ Fabric.create!([{
 },
 {
   user_id: 1,
-  bolt_id: @bolt.id,
   fabric_type_id: @fabric_type.id,
   fabric_name: "Blue",
   barcode: 567891234,
@@ -144,52 +137,42 @@ Fabric.create!([{
 }])
 
 Swatch.create!([{
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 },
 {
-  bolt_id: @bolt.id,
   fabric_id: @fabric_type.id,
   user_id: 1
 }])
