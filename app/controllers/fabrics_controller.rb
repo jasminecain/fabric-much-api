@@ -17,6 +17,7 @@ class FabricsController < ApplicationController
   # POST /fabrics
   def create
     @fabric = Fabric.new(fabric_params)
+    @fabric.user_id = 1
 
     if @fabric.save
       render json: @fabric, status: :created, location: @fabric
@@ -27,16 +28,28 @@ class FabricsController < ApplicationController
 
   # PATCH/PUT /fabrics/1
   def update
-    if @fabric.update(fabric_params)
-      render json: @fabric
-    else
-      render json: @fabric.errors, status: :unprocessable_entity
-    end
+    @fabric = Fabric.find(params[:id])
+      # @fabric = Fabric.find(session[:user_id])
+      if @fabric.update
+        # update_attributes(fabric_params)
+        successful_request
+        # render json: @fabric
+      else
+        render json: @fabric.errors, status: :unprocessable_entity
+      end
   end
 
   # DELETE /fabrics/1
   def destroy
-    @fabric.destroy
+    @fabric = Fabric.find(params[:id])
+    # @fabric = Fabric.find(session[:user_id])
+    #   if @user.id == @fabric.user_id
+    #   end
+    if @fabric.destroy
+      successful_request
+    else
+      bad_request(@fabric)
+    end
   end
 
   # Stores json list
@@ -57,6 +70,6 @@ class FabricsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def fabric_params
-      params.require(:fabric).permit(:user_id, :bolt_id, :fabric_type_id, :fabric_name, :barcode, :price, :quantity, :store)
+      params.require(:fabric).permit(:user_id, :fabric_type_id, :fabric_name, :barcode, :price, :quantity, :store)
     end
 end
