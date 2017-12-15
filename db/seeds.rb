@@ -12,83 +12,40 @@ User.create!([{
   password: "password"
 }])
 
-FabricType.create!([{
-  fabric_type: "Cotton"
-},
-{
-  fabric_type: "Licensed Fabric"
-},
-{
-  fabric_type: "Character Fabric"
-},
-{
-  fabric_type: "Nursery"
-},
-{
-  fabric_type: "Team Fabric"
-},
-{
-  fabric_type: "Flannel"
-},
-{
-  fabric_type: "Felt"
-},
-{
-  fabric_type: "Fleece"
-},
-{
-  fabric_type: "Holiday"
-},
-{
-  fabric_type: "Premium Cotton"
-}])
+unless FabricType.count > 0
+  FabricType.create!([{
+    fabric_type: "Cotton"
+  },
+  {
+    fabric_type: "Licensed Fabric"
+  },
+  {
+    fabric_type: "Character Fabric"
+  },
+  {
+    fabric_type: "Nursery"
+  },
+  {
+    fabric_type: "Team Fabric"
+  },
+  {
+    fabric_type: "Flannel"
+  },
+  {
+    fabric_type: "Felt"
+  },
+  {
+    fabric_type: "Fleece"
+  },
+  {
+    fabric_type: "Holiday"
+  },
+  {
+    fabric_type: "Premium Cotton"
+  }])
+end
 
 @fabric_type = FabricType.first
-
-Bolt.create!([{
-  user_id: "1",
-  fabric_type_id: @fabric_type.id,
-  fabric_name: "Purple",
-  barcode: 123456789,
-  price: 12.99,
-  quantity: 2.0,
-  store: "Joann's"
-},{
-  user_id: "1",
-  fabric_type_id: @fabric_type.id,
-  fabric_name: "Indigo",
-  barcode: 234567891,
-  price: 3.99,
-  quantity: 2.0,
-  store: "Joann's"
-},
-{
-  user_id: "1",
-  fabric_type_id: @fabric_type.id,
-  fabric_name: "Brown",
-  barcode: 345678912,
-  price: 8.99,
-  quantity: 2.0,
-  store: "Fabric.com"
-},
-{
-  user_id: "1",
-  fabric_type_id: @fabric_type.id,
-  fabric_name: "Black",
-  barcode: 456789123,
-  price: 11.99,
-  quantity: 2.0,
-  store: "Hobby Lobby"
-},
-{
-  user_id: "1",
-  fabric_type_id: @fabric_type.id,
-  fabric_name: "White",
-  barcode: 567891234,
-  price: 7.99,
-  quantity: 2.0,
-  store: "Walmart"
-}])
 
 Fabric.create!([{
   user_id: 1,
@@ -136,51 +93,17 @@ Fabric.create!([{
   store: "Joann's"
 }])
 
-Swatch.create!([{
-  fabric_id: @fabric_type.id,
-  user_id: 1
+InventoryType.create!([{
+  inventory_type: "Bolt"
 },
 {
-  fabric_id: @fabric_type.id,
-  user_id: 1
+  inventory_type: "Fabric"
 },
 {
-  fabric_id: @fabric_type.id,
-  user_id: 1
-},
-{
-  fabric_id: @fabric_type.id,
-  user_id: 1
-},
-{
-  fabric_id: @fabric_type.id,
-  user_id: 1
-},
-{
-  fabric_id: @fabric_type.id,
-  user_id: 1
-},
-{
-  fabric_id: @fabric_type.id,
-  user_id: 1
-},
-{
-  fabric_id: @fabric_type.id,
-  user_id: 1
-},
-{
-  fabric_id: @fabric_type.id,
-  user_id: 1
-},
-{
-  fabric_id: @fabric_type.id,
-  user_id: 1
+  inventory_type: "Swatch"
 }])
-
 
 #prints out the total count tables
 p "Created #{User.count} users"
-p "Created #{Bolt.count} bolts"
 p "Created #{Fabric.count} fabrics"
-p "Created #{Swatch.count} swatches"
 p "Created #{FabricType.count} fabric_types"

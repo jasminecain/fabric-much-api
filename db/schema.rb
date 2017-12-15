@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214041754) do
-
-  create_table "bolts", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "fabric_type_id"
-    t.string "fabric_name"
-    t.integer "barcode"
-    t.float "price"
-    t.float "quantity"
-    t.string "store"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["fabric_type_id"], name: "index_bolts_on_fabric_type_id"
-    t.index ["user_id"], name: "index_bolts_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 20171215044822) do
 
   create_table "fabric_types", force: :cascade do |t|
     t.string "fabric_type"
@@ -42,8 +28,26 @@ ActiveRecord::Schema.define(version: 20171214041754) do
     t.string "store"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "inventory_type_id"
     t.index ["fabric_type_id"], name: "index_fabrics_on_fabric_type_id"
     t.index ["user_id"], name: "index_fabrics_on_user_id"
+  end
+
+  create_table "fabrics_inventory_types", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "fabric_id"
+    t.integer "inventory_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fabric_id"], name: "index_fabrics_inventory_types_on_fabric_id"
+    t.index ["inventory_type_id"], name: "index_fabrics_inventory_types_on_inventory_type_id"
+    t.index ["user_id"], name: "index_fabrics_inventory_types_on_user_id"
+  end
+
+  create_table "inventory_types", force: :cascade do |t|
+    t.string "inventory_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -51,15 +55,6 @@ ActiveRecord::Schema.define(version: 20171214041754) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "swatches", force: :cascade do |t|
-    t.integer "fabric_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["fabric_id"], name: "index_swatches_on_fabric_id"
-    t.index ["user_id"], name: "index_swatches_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
