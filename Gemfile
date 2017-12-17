@@ -20,6 +20,8 @@ gem 'puma', '~> 3.7'
 gem 'bcrypt', '~> 3.1.7'
 # JWT Tokens authentication
 gem 'jwt'
+# upload swatch images
+gem "paperclip", "~> 4.3"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
