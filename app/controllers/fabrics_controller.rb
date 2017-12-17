@@ -11,7 +11,7 @@ class FabricsController < ApplicationController
   # GET /fabrics/1
   def show
     @fabric = Fabric.find(params[:id])
-    render json: @fabric
+    render json: @fabric.to_json(:include => :fabric_type)
   end
 
   # POST /fabrics
@@ -32,10 +32,8 @@ class FabricsController < ApplicationController
   def update
     @fabric = Fabric.find(params[:id])
       # @fabric = Fabric.find(session[:user_id])
-      if @fabric.update
-        # update_attributes(fabric_params)
-        successful_request
-        # render json: @fabric
+      if @fabric.update_attributes(fabric_params)
+        render json: @fabric
       else
         render json: @fabric.errors, status: :unprocessable_entity
       end
