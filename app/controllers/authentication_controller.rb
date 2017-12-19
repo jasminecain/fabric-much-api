@@ -8,6 +8,8 @@ class AuthenticationController < ApplicationController
 
     # check command outcome
     if command.success?
+      user = User.find_by_email(params[:email])
+      user.update_attributes(:authentication_token => command.result)
       # command#result will contain the user instance, if found
       render json: { auth_token: command.result }
     else

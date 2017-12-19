@@ -1,6 +1,6 @@
 module Api
   class ApiController < ActionController::Base
-    # before_action :authenticate_user
+    before_action :authenticate_user
 
     respond_to :json
 
@@ -38,8 +38,7 @@ module Api
 
     def authenticate_user
       token = request.headers['Authentication-Token']
-      return unauthorized unless User.exists?(authenticate_token: token)
+      return unauthorized unless User.exists?(authentication_token: token)
     end
-
   end
 end
