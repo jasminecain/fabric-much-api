@@ -28420,3 +28420,1146 @@ Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.2ms)
 Completed 200 OK in 22ms (Views: 0.1ms | ActiveRecord: 0.5ms)
 
 
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:42:45 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 9ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:43:11 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ArgumentError (Before process_action callback :authenticate_request has not been defined):
+  
+app/controllers/authentication_controller.rb:2:in `<class:AuthenticationController>'
+app/controllers/authentication_controller.rb:1:in `<top (required)>'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:43:58 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 177776ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:47:34 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 1.4ms)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/commands/authenticate_user.rb:19:in `user'
+app/commands/authenticate_user.rb:10:in `call'
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:48:15 -0600
+  
+ArgumentError (Before process_action callback :authenticate_request has not been defined):
+  
+app/controllers/authentication_controller.rb:2:in `<class:AuthenticationController>'
+app/controllers/authentication_controller.rb:1:in `<top (required)>'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:48:31 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.4ms)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/commands/authenticate_user.rb:19:in `user'
+app/commands/authenticate_user.rb:10:in `call'
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:48:43 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:49:24 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.9ms)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/commands/authenticate_user.rb:19:in `user'
+app/commands/authenticate_user.rb:10:in `call'
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:49:37 -0600
+  
+ArgumentError (Before process_action callback :authenticate_request has not been defined):
+  
+app/controllers/authentication_controller.rb:2:in `<class:AuthenticationController>'
+app/controllers/authentication_controller.rb:1:in `<top (required)>'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:49:59 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:50:16 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.9ms)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/commands/authenticate_user.rb:19:in `user'
+app/commands/authenticate_user.rb:10:in `call'
+app/controllers/authentication_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "text@example.com"], ["password_digest", "$2a$10$ceNC5Fm69kpR4lCXLWjANuqEnhb8qVxv5pLTeQrtjnfjeF5cr/eFS"], ["created_at", "2017-12-18 23:52:21.330983"], ["updated_at", "2017-12-18 23:52:21.330983"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:53:02 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 23095ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:54:02 -0600
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 8ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:54:29 -0600
+  
+ArgumentError (Before process_action callback :authenticate_request has not been defined):
+  
+app/controllers/authentication_controller.rb:2:in `<class:AuthenticationController>'
+app/controllers/authentication_controller.rb:1:in `<top (required)>'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:54:50 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 7ms (Views: 0.2ms | ActiveRecord: 1.2ms)
+
+
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:58:11 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 1ms
+
+
+  
+SyntaxError (/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:40: syntax error, unexpected tSTRING_BEG, expecting ')'
+.add(:authentication, I18n.t "authenticate_user.failure")
+                              ^
+/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:40: syntax error, unexpected ')', expecting keyword_end
+t "authenticate_user.failure")
+                              ^
+/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:44: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/commands/authenticate_user.rb:40: syntax error, unexpected tSTRING_BEG, expecting ')'
+app/commands/authenticate_user.rb:40: syntax error, unexpected ')', expecting keyword_end
+app/commands/authenticate_user.rb:44: syntax error, unexpected end-of-input, expecting keyword_end
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 17:59:53 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 1ms
+
+
+  
+SyntaxError (/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:17: syntax error, unexpected tSTRING_BEG, expecting ')'
+.add(:authentication, I18n.t "authenticate_user.failure")
+                              ^
+/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:17: syntax error, unexpected ')', expecting keyword_end
+t "authenticate_user.failure")
+                              ^
+/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:21: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/commands/authenticate_user.rb:17: syntax error, unexpected tSTRING_BEG, expecting ')'
+app/commands/authenticate_user.rb:17: syntax error, unexpected ')', expecting keyword_end
+app/commands/authenticate_user.rb:21: syntax error, unexpected end-of-input, expecting keyword_end
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:00:21 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 1ms
+
+
+  
+SyntaxError (/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:17: syntax error, unexpected tSTRING_BEG, expecting ')'
+.add(:authentication, I18n.t "authenticate_user.failure")
+                              ^
+/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:17: syntax error, unexpected ')', expecting keyword_end
+t "authenticate_user.failure")
+                              ^
+/Users/jasmine/workspace/fabric-much-api/app/commands/authenticate_user.rb:21: syntax error, unexpected end-of-input, expecting keyword_end):
+  
+app/commands/authenticate_user.rb:17: syntax error, unexpected tSTRING_BEG, expecting ')'
+app/commands/authenticate_user.rb:17: syntax error, unexpected ')', expecting keyword_end
+app/commands/authenticate_user.rb:21: syntax error, unexpected end-of-input, expecting keyword_end
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:01:29 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 17ms
+
+
+  
+NoMethodError (undefined method `authenticate' for User (call 'User.connection' to establish a connection):Class):
+  
+app/commands/authenticate_user.rb:14:in `call'
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:04:30 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 5ms
+
+
+  
+NameError (undefined local variable or method `email' for #<AuthenticateUser:0x00007fbc86e0e0f8>):
+  
+app/commands/authenticate_user.rb:15:in `call'
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:04:44 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 401 Unauthorized in 16ms (Views: 0.2ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:05:08 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 401 Unauthorized in 88417ms (Views: 0.5ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:06:39 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 401 Unauthorized in 47466ms (Views: 0.3ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:07:30 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 401 Unauthorized in 31742ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:08:04 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "users" SET "email" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["email", "test@example.com"], ["updated_at", "2017-12-19 00:10:05.445783"], ["id", 3]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 138912ms (Views: 0.2ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:10:39 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.4ms)
+
+
+  
+NameError (undefined local variable or method `password' for #<AuthenticateUser:0x00007fbc84a18e78>
+Did you mean?  @password):
+  
+app/commands/authenticate_user.rb:17:in `call'
+app/controllers/authentication_controller.rb:7:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:11:05 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 200 OK in 181521ms (Views: 5.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:14:07 -0600
+Processing by FabricsController#index as HTML
+  [1m[36mFabric Load (0.2ms)[0m  [1m[34mSELECT "fabrics".* FROM "fabrics"[0m
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:14:07 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:14:07 -0600
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:14:07 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:14:07 -0600
+  [1m[36mFabricType Load (0.3ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.2ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 45ms (Views: 0.1ms | ActiveRecord: 2.6ms)
+
+
+Processing by FabricsController#stores as HTML
+Completed 200 OK in 3ms (Views: 0.1ms)
+
+
+Processing by FabricTypesController#index as HTML
+Processing by InventoryTypesController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+  [1m[36mFabricType Load (0.2ms)[0m  [1m[34mSELECT "fabric_types".* FROM "fabric_types"[0m
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 12ms (Views: 8.2ms | ActiveRecord: 1.3ms)
+
+
+  [1m[36mInventoryType Load (0.1ms)[0m  [1m[34mSELECT "inventory_types".* FROM "inventory_types"[0m
+Completed 200 OK in 10ms (Views: 0.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:14:28 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+Completed 200 OK in 278184ms (Views: 0.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:19:07 -0600
+Processing by FabricsController#index as HTML
+  [1m[36mFabric Load (0.2ms)[0m  [1m[34mSELECT "fabrics".* FROM "fabrics"[0m
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:19:07 -0600
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:19:07 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:19:07 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:19:07 -0600
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 30ms (Views: 0.1ms | ActiveRecord: 1.6ms)
+
+
+Processing by FabricsController#fabric_types as HTML
+Processing by FabricsController#stores as HTML
+Processing by InventoryTypesController#index as HTML
+Completed 200 OK in 5ms (Views: 0.3ms)
+
+
+  [1m[36mInventoryType Load (0.1ms)[0m  [1m[34mSELECT "inventory_types".* FROM "inventory_types"[0m
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Processing by FabricTypesController#index as HTML
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 0.7ms)
+
+
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT "fabric_types".* FROM "fabric_types"[0m
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:19:29 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 147ms (ActiveRecord: 0.7ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'authenticate_token' for User.):
+  
+app/controllers/authentication_controller.rb:12:in `create'
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:19:58 -0600
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 170ms (ActiveRecord: 1.4ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'authentication_token' for User.):
+  
+app/controllers/authentication_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddAuthenticationTokenToUsers (20171219002136)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "users" ADD "authentication_token" varchar[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20171219002136"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_on_fabric_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_inventory_types_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_inventory_types_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_inventory_types_on_inventory_type_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_inventory_types_on_inventory_type_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_fabrics_inventory_types_on_fabric_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_fabrics_inventory_types_on_fabric_id' AND type='index'
+[0m
+Started POST "/authenticate" for 127.0.0.1 at 2017-12-18 18:22:52 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#create as HTML
+  Parameters: {"email"=>"test@example.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@example.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "authentication_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["authentication_token", "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE1MTM3MjkzNzJ9.C6qDcceaPeWNXi_lIKymkbKFO2SEyLVy2rKfmA25KD4"], ["updated_at", "2017-12-19 00:22:52.733216"], ["id", 3]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 159ms (Views: 0.2ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:22:52 -0600
+Processing by FabricsController#index as HTML
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:22:52 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:22:52 -0600
+Processing by FabricsController#stores as HTML
+Processing by FabricsController#fabric_types as HTML
+  [1m[36mFabric Load (0.2ms)[0m  [1m[34mSELECT "fabrics".* FROM "fabrics"[0m
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:22:52 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:22:52 -0600
+Processing by InventoryTypesController#index as HTML
+Processing by FabricTypesController#index as HTML
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT "fabric_types".* FROM "fabric_types"[0m
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 1.3ms)
+
+
+  [1m[36mInventoryType Load (0.1ms)[0m  [1m[34mSELECT "inventory_types".* FROM "inventory_types"[0m
+Completed 200 OK in 13ms (Views: 0.8ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mFabricType Load (0.2ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 50ms (Views: 0.1ms | ActiveRecord: 1.2ms)
+
+
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:27:02 -0600
+Processing by FabricsController#index as HTML
+  [1m[36mFabric Load (0.1ms)[0m  [1m[34mSELECT "fabrics".* FROM "fabrics"[0m
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:27:02 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:27:02 -0600
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE FabricType Load (0.0ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT  "fabric_types".* FROM "fabric_types" WHERE "fabric_types"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 37ms (Views: 0.2ms | ActiveRecord: 2.7ms)
+
+
+Processing by InventoryTypesController#index as HTML
+Processing by FabricTypesController#index as HTML
+  [1m[36mInventoryType Load (0.1ms)[0m  [1m[34mSELECT "inventory_types".* FROM "inventory_types"[0m
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:27:02 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:27:02 -0600
+Completed 200 OK in 8ms (Views: 3.2ms | ActiveRecord: 0.7ms)
+
+
+  [1m[36mFabricType Load (0.2ms)[0m  [1m[34mSELECT "fabric_types".* FROM "fabric_types"[0m
+Processing by FabricsController#stores as HTML
+Processing by FabricsController#fabric_types as HTML
+Completed 200 OK in 17ms (Views: 7.2ms | ActiveRecord: 1.1ms)
+
+
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:27:54 -0600
+Processing by FabricsController#index as HTML
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:27:54 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:27:54 -0600
+Completed 500 Internal Server Error in 52ms
+
+
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:27:54 -0600
+  
+NoMethodError (undefined method `authenticate_user' for #<FabricsController:0x00007fbc86963e68>
+Did you mean?  authenticate_url
+               authenticate_path):
+  
+activesupport (5.1.4) lib/active_support/callbacks.rb:413:in `block in make_lambda'
+activesupport (5.1.4) lib/active_support/callbacks.rb:197:in `block (2 levels) in halting'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.1.4) lib/active_support/callbacks.rb:198:in `block in halting'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `block in invoke_before'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `each'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `invoke_before'
+activesupport (5.1.4) lib/active_support/callbacks.rb:130:in `run_callbacks'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.4) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.4) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Processing by FabricTypesController#index as HTML
+  [1m[36mFabricType Load (0.1ms)[0m  [1m[34mSELECT "fabric_types".* FROM "fabric_types"[0m
+Completed 200 OK in 12ms (Views: 8.2ms | ActiveRecord: 1.0ms)
+
+
+Processing by InventoryTypesController#index as HTML
+  [1m[36mInventoryType Load (0.1ms)[0m  [1m[34mSELECT "inventory_types".* FROM "inventory_types"[0m
+Completed 200 OK in 5ms (Views: 2.7ms | ActiveRecord: 0.5ms)
+
+
+Processing by FabricsController#fabric_types as HTML
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:27:55 -0600
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 0.0ms)
+
+
+Processing by FabricsController#stores as HTML
+  
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 0.0ms)
+
+
+NoMethodError (undefined method `authenticate_user' for #<FabricsController:0x00007fbc86d2d760>
+Did you mean?  authenticate_url
+               authenticate_path):
+  
+  
+activesupport (5.1.4) lib/active_support/callbacks.rb:413:in `block in make_lambda'
+activesupport (5.1.4) lib/active_support/callbacks.rb:197:in `block (2 levels) in halting'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.1.4) lib/active_support/callbacks.rb:198:in `block in halting'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `block in invoke_before'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `each'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `invoke_before'
+activesupport (5.1.4) lib/active_support/callbacks.rb:130:in `run_callbacks'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.4) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.4) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+NoMethodError (undefined method `authenticate_user' for #<FabricsController:0x00007fbc86ae8ea0>
+Did you mean?  authenticate_url
+               authenticate_path):
+  
+activesupport (5.1.4) lib/active_support/callbacks.rb:413:in `block in make_lambda'
+activesupport (5.1.4) lib/active_support/callbacks.rb:197:in `block (2 levels) in halting'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:12:in `block (2 levels) in <module:Callbacks>'
+activesupport (5.1.4) lib/active_support/callbacks.rb:198:in `block in halting'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `block in invoke_before'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `each'
+activesupport (5.1.4) lib/active_support/callbacks.rb:507:in `invoke_before'
+activesupport (5.1.4) lib/active_support/callbacks.rb:130:in `run_callbacks'
+actionpack (5.1.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/rescue.rb:20:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `block in instrument'
+activesupport (5.1.4) lib/active_support/notifications/instrumenter.rb:21:in `instrument'
+activesupport (5.1.4) lib/active_support/notifications.rb:166:in `instrument'
+actionpack (5.1.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+actionpack (5.1.4) lib/action_controller/metal/params_wrapper.rb:252:in `process_action'
+activerecord (5.1.4) lib/active_record/railties/controller_runtime.rb:22:in `process_action'
+actionpack (5.1.4) lib/abstract_controller/base.rb:124:in `process'
+actionpack (5.1.4) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.4) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.4) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.4) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+activerecord (5.1.4) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+rack-cors (1.0.2) lib/rack/cors.rb:97:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.11.0) lib/puma/configuration.rb:225:in `call'
+puma (3.11.0) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.0) lib/puma/server.rb:438:in `process_client'
+puma (3.11.0) lib/puma/server.rb:302:in `block in run'
+puma (3.11.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:29:34 -0600
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:29:34 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:29:34 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:29:34 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:29:34 -0600
+Processing by InventoryTypesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 3ms (Views: 0.2ms)
+
+
+Processing by FabricTypesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms)
+
+
+Processing by FabricsController#stores as HTML
+Processing by FabricsController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Filter chain halted as :authenticate_request rendered or redirected
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Completed 401 Unauthorized in 1ms (Views: 0.1ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:29:57 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:29:57 -0600
+Processing by FabricsController#index as HTML
+Processing by FabricTypesController#index as HTML
+Filter chain halted as :authenticate_request rendered or redirected
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:31:30 -0600
+Completed 401 Unauthorized in 67811ms (Views: 0.3ms)
+
+
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:31:30 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:31:30 -0600
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 114663ms (Views: 0.3ms)
+
+
+Processing by InventoryTypesController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+Processing by FabricsController#stores as HTML
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:31:52 -0600
+Processing by InventoryTypesController#index as HTML
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:31:52 -0600
+Filter chain halted as :authenticate_user rendered or redirected
+Processing by FabricsController#index as HTML
+Completed 401 Unauthorized in 185ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:31:52 -0600
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 2930ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 3401ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 3595ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Processing by FabricTypesController#index as HTML
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:31:56 -0600
+  [1m[36mUser Exists (4.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:31:56 -0600
+Processing by FabricsController#stores as HTML
+Filter chain halted as :authenticate_user rendered or redirected
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:31:56 -0600
+Processing by FabricsController#index as HTML
+Completed 401 Unauthorized in 3792ms (Views: 0.2ms | ActiveRecord: 4.7ms)
+
+
+Processing by FabricsController#fabric_types as HTML
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:31:56 -0600
+Processing by InventoryTypesController#index as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 170ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:31:56 -0600
+Processing by FabricTypesController#index as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 174ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:31:57 -0600
+Processing by FabricsController#stores as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 149ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:31:57 -0600
+Processing by FabricsController#fabric_types as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 167ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:31:57 -0600
+Processing by FabricsController#index as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 165ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1002ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:31:57 -0600
+Processing by InventoryTypesController#index as HTML
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:31:57 -0600
+Processing by FabricTypesController#index as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 114ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 326ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:31:58 -0600
+Processing by FabricsController#stores as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 122ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:31:58 -0600
+Processing by FabricsController#fabric_types as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 104ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 1807ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 2165ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 2358ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:32:15 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:32:15 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:32:15 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:32:15 -0600
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:32:15 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InventoryTypesController#index as HTML
+Processing by FabricTypesController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+Processing by FabricsController#index as HTML
+Processing by FabricsController#stores as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 13ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Completed 401 Unauthorized in 13ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Completed 401 Unauthorized in 13ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 14ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 14ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:32:22 -0600
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:32:22 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:32:22 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:32:22 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:32:22 -0600
+Processing by FabricTypesController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+Processing by FabricsController#index as HTML
+Processing by FabricsController#stores as HTML
+Completed 500 Internal Server Error in 3406ms
+
+
+  
+SystemExit (exit):
+  
+app/controllers/application_controller.rb:19:in `authenticate_user'
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 14625ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 14827ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Processing by InventoryTypesController#index as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 92826ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Completed 500 Internal Server Error in 1883ms (ActiveRecord: 0.0ms)
+
+
+  
+SystemExit (exit):
+  
+app/controllers/application_controller.rb:19:in `authenticate_user'
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:34:24 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:34:24 -0600
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:34:24 -0600
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:34:24 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:34:24 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FabricsController#stores as HTML
+Processing by FabricTypesController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+Processing by InventoryTypesController#index as HTML
+Processing by FabricsController#index as HTML
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 10ms (Views: 0.6ms | ActiveRecord: 0.5ms)
+
+
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 15ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 14ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:34:43 -0600
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:34:43 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:34:43 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:34:43 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:34:43 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FabricTypesController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+Processing by InventoryTypesController#index as HTML
+Processing by FabricsController#index as HTML
+Processing by FabricsController#stores as HTML
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 0.0ms)
+
+
+  
+Pry::InputLock::Interrupt (Pry::InputLock::Interrupt):
+  
+app/controllers/application_controller.rb:19:in `authenticate_user'
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 23347ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 23372ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 23389ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 23346ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:35:17 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:35:17 -0600
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:35:17 -0600
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:35:17 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:35:17 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by InventoryTypesController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+Processing by FabricsController#index as HTML
+Processing by FabricTypesController#index as HTML
+Processing by FabricsController#stores as HTML
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 57267ms (Views: 0.3ms | ActiveRecord: 0.5ms)
+
+
+Completed 401 Unauthorized in 57224ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 57239ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 57221ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Completed 401 Unauthorized in 57247ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fabrics/stores" for 127.0.0.1 at 2017-12-18 18:36:31 -0600
+Started GET "/inventory_types" for 127.0.0.1 at 2017-12-18 18:36:31 -0600
+Started GET "/fabrics/fabric_types" for 127.0.0.1 at 2017-12-18 18:36:31 -0600
+Started GET "/fabric_types" for 127.0.0.1 at 2017-12-18 18:36:31 -0600
+Started GET "/fabrics" for 127.0.0.1 at 2017-12-18 18:36:31 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FabricsController#stores as HTML
+Processing by FabricsController#index as HTML
+Processing by FabricTypesController#index as HTML
+Processing by InventoryTypesController#index as HTML
+Processing by FabricsController#fabric_types as HTML
+Completed 500 Internal Server Error in 38248ms (ActiveRecord: 0.0ms)
+
+
+  
+SystemExit (exit):
+  
+app/controllers/application_controller.rb:19:in `authenticate_user'
+Completed 500 Internal Server Error in 45692ms (ActiveRecord: 0.0ms)
+
+
+  
+SystemExit (exit):
+  
+app/controllers/application_controller.rb:19:in `authenticate_user'
+Completed 500 Internal Server Error in 49957ms (ActiveRecord: 0.0ms)
+
+
+  
+SystemExit (exit):
+  
+app/controllers/application_controller.rb:19:in `authenticate_user'
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."authentication_token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Filter chain halted as :authenticate_user rendered or redirected
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 50162ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Completed 401 Unauthorized in 50153ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
