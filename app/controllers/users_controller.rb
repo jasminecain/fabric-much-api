@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
+    @user.destroy(user_params)
   end
 
   private

@@ -17,6 +17,24 @@ class AuthenticationController < ApplicationController
     end
   end
 
+  def destroy
+    if headers['Authorization'].present?
+      user = User.find_by(:authentication_token)
+      render json: { auth_token: command.errors }, status: :destroy
+    else
+      render json: { error: command.erros }, status: :authorized
+    end
+
+    # if header authorization is present
+    # find user by authentication token
+    # delete auth token from user record
+    # save if successful return 200
+    # delete token in local storage ANGJS redirect to log in
+
+
+
+  end
+
   private
 
   def sessions_params
