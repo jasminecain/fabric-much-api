@@ -1,5 +1,5 @@
-class AuthenticationController < ApplicationController
-  # skip_before_action :authenticate_request
+class AuthenticationsController < ApplicationController
+  skip_before_action :authenticate_user
 
   def create
     # initialize and execute the command
@@ -18,21 +18,13 @@ class AuthenticationController < ApplicationController
   end
 
   def destroy
-    if headers['Authorization'].present?
-      user = User.find_by(:authentication_token)
-      render json: { auth_token: command.errors }, status: :destroy
+    if request.headers['Authentication-Token']
+      user = User.find_by(:authentication_token => request.headers['Authentication-Token'])
+      user.update_attributes(:authentication_token => nil)
+      render json: { status: 200 }
     else
-      render json: { error: command.erros }, status: :authorized
+      render json: { head: 204 }
     end
-
-    # if header authorization is present
-    # find user by authentication token
-    # delete auth token from user record
-    # save if successful return 200
-    # delete token in local storage ANGJS redirect to log in
-
-
-
   end
 
   private
