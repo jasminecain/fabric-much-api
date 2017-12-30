@@ -1,5 +1,5 @@
-class AuthenticationController < ApplicationController
-  # skip_before_action :authenticate_request
+class AuthenticationsController < ApplicationController
+  skip_before_action :authenticate_user
 
   def create
     # initialize and execute the command
@@ -14,6 +14,16 @@ class AuthenticationController < ApplicationController
       render json: { auth_token: command.result }
     else
       render json: { error: command.errors }, status: :unauthorized
+    end
+  end
+
+  def destroy
+    if request.headers['Authentication-Token']
+      user = User.find_by(:authentication_token => request.headers['Authentication-Token'])
+      user.update_attributes(:authentication_token => nil)
+      render json: { status: 200 }
+    else
+      render json: { head: 204 }
     end
   end
 

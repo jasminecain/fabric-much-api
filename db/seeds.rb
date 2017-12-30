@@ -8,7 +8,7 @@
 
 #creates a user so that new users will not get an error
 User.create!([{
-  email: "test1@testers.com",
+  email: "test@example.com",
   password: "password"
 }])
 
@@ -103,7 +103,17 @@ InventoryType.create!([{
   inventory_type: "Swatch"
 }])
 
+@fabric = Fabric.first
+@inventory_type = InventoryType.first
+
+FabricsInventoryType.create!([{
+  user_id: 1,
+  fabric_id: @fabric.id,
+  inventory_type_id: @inventory_type.id
+}])
+
 #prints out the total count tables
 p "Created #{User.count} users"
 p "Created #{Fabric.count} fabrics"
 p "Created #{FabricType.count} fabric_types"
+p "Created #{FabricsInventoryType.count} fabric_inventory_types"
