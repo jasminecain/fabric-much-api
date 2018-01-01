@@ -40,8 +40,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # angular side redirect user to dash board
-
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
