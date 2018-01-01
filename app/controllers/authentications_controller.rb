@@ -10,8 +10,8 @@ class AuthenticationsController < ApplicationController
     if command.success?
       user = User.find_by_email(params[:email])
       user.update_attributes(:authentication_token => command.result)
-      # command#result will contain the user instance, if found
-      render json: { auth_token: command.result }
+      # return the user record with auth token
+      render json: user
     else
       render json: { error: command.errors }, status: :unauthorized
     end

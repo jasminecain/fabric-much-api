@@ -17,7 +17,7 @@ class FabricsController < ApplicationController
   # POST /fabrics
   def create
     @fabric = Fabric.new(fabric_params)
-    @fabric.user_id = 1
+    # @fabric.user_id = 1
     # inventory_type = InventoryType.find(fabric_params[:inventory_type_id])
     # @fabric.inventory_type << inventory_type
 

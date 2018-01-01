@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_action :authenticate_request, only: [:create]
+  # skip_before_action :authenticate_user, only: [:create]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -12,21 +12,35 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     @fabrics = @user.fabrics
-    @bolts = @user.bolts
-    @swatches = @user.swatches
-    render json: {fabrics: @fabrics, bolts: @bolts, swatches: @swatches}
+    # @bolts = @user.bolts
+    # @swatches = @user.swatches
+    render json: {fabrics: @fabrics}
+    # bolts: @bolts, swatches: @swatches
+  end
+
+  def new
+    user = User.new
   end
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    # create user
+    @user = User.create(user_params)
 
     if @user.save
+      # authenticate user with user_params & store token in token variable
+      token = AuthenticateUser.call(user_params[:email], user_params[:password]).result
+      # update user authentication_token attribute with new token
+      @user.update_attributes(:authentication_token => token)
+      # don't need pw digest in response
+      @user[:password_digest] = nil
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
   end
+
+  # angular side redirect user to dash board
 
   # PATCH/PUT /users/1
   def update
@@ -50,6 +64,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password, :fabric_image)
+      params.require(:user).permit(:email, :password)
     end
 end
