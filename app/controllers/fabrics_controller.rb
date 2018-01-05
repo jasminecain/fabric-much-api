@@ -17,6 +17,24 @@ class FabricsController < ApplicationController
   # POST /fabrics
   def create
     @fabric = Fabric.new(fabric_params)
+
+    if params[:fabric][:fabric_image][:$ngfDataUrl]
+      image_file = Paperclip.io_adapters.for(params[:fabric][:fabric_image][:$ngfDataUrl])
+      image_file.original_filename = params[:fabric][:fabric_image][:name]
+      image_file.content_type = params[:fabric][:fabric_image][:type]
+      binding.pry
+      @fabric.fabric_image = image_file
+    end
+    binding.pry
+
+    # if picture_params[:file_data]
+    #   image_file                   = Paperclip.io_adapters.for(picture_params[:file_data])
+    #   image_file.original_filename = picture_params[:file_name]
+    #   image_file.content_type      = "image/jpeg"
+    #   @picture.file                = image_file
+    # end
+
+
     # @fabric.user_id = 1
     # inventory_type = InventoryType.find(fabric_params[:inventory_type_id])
     # @fabric.inventory_type << inventory_type
