@@ -17,26 +17,7 @@ class FabricsController < ApplicationController
   # POST /fabrics
   def create
     @fabric = Fabric.new(fabric_params)
-    # binding.pry
-    if params[:fabric][:fabric_image] && params[:fabric][:fabric_image][:$ngfDataUrl]
-      image_file = Paperclip.io_adapters.for(params[:fabric][:fabric_image][:$ngfDataUrl])
-      image_file.original_filename = params[:fabric][:fabric_image][:name]
-      image_file.content_type = params[:fabric][:fabric_image][:type]
-      # binding.pry
-      @fabric.fabric_image = image_file
-    end
-    # binding.pry
-    # if picture_params[:file_data]
-    #   image_file                   = Paperclip.io_adapters.for(picture_params[:file_data])
-    #   image_file.original_filename = picture_params[:file_name]
-    #   image_file.content_type      = "image/jpeg"
-    #   @picture.file                = image_file
-    # end
 
-
-    # @fabric.user_id = 1
-    # inventory_type = InventoryType.find(fabric_params[:inventory_type_id])
-    # @fabric.inventory_type << inventory_type
     if @fabric.save
       render json: @fabric, status: :created, location: @fabric
     else
@@ -47,12 +28,12 @@ class FabricsController < ApplicationController
   # PATCH/PUT /fabrics/1
   def update
     @fabric = Fabric.find(params[:id])
-      # @fabric = Fabric.find(session[:user_id])
-      if @fabric.update_attributes(fabric_params)
-        render json: @fabric
-      else
-        render json: @fabric.errors, status: :unprocessable_entity
-      end
+
+    if @fabric.update_attributes(fabric_params)
+      render json: @fabric
+    else
+      render json: @fabric.errors, status: :unprocessable_entity
+    end
   end
 
   # DELETE /fabrics/1

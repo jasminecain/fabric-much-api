@@ -9,6 +9,6 @@ class Fabric < ApplicationRecord
 
   FABRIC_TYPES = %w[Cotton Licensed Fabric Character Fabric Nursery\ Team Fabric Flannel Felt\ Fleece Holiday Premium Cotton]
 
-  has_attached_file :fabric_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :fabric_image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: ""
   validates_attachment_content_type :fabric_image, content_type: /\Aimage\/.*\z/
 end
