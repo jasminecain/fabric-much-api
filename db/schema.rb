@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104170552) do
+ActiveRecord::Schema.define(version: 20180107035722) do
 
   create_table "fabric_types", force: :cascade do |t|
     t.string "fabric_type"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180104170552) do
     t.string "fabric_image_content_type"
     t.integer "fabric_image_file_size"
     t.datetime "fabric_image_updated_at"
+    t.binary "fabric_image"
     t.index ["fabric_type_id"], name: "index_fabrics_on_fabric_type_id"
     t.index ["user_id"], name: "index_fabrics_on_user_id"
   end
