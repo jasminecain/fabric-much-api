@@ -39,9 +39,7 @@ class FabricsController < ApplicationController
   # DELETE /fabrics/1
   def destroy
     @fabric = Fabric.find(params[:id])
-    # @fabric = Fabric.find(session[:user_id])
-    #   if @user.id == @fabric.user_id
-    #   end
+
     if @fabric.destroy
       successful_request
     else
