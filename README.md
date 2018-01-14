@@ -8,6 +8,7 @@ Fabric Much is an app built for crafters to track their fabric inventory to help
 ### Prerequisites
 - Node v6.11.0
 - NPM >= v5.3.0
+- Gemfile
 
 ### Spin up
 ```bash
