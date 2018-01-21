@@ -5,7 +5,7 @@ class FabricsController < ApplicationController
   def index
     @fabrics = Fabric.all
 
-    render json: @fabrics.to_json(:include => :fabric_type)
+    render json: @fabrics.to_json(:include => [:fabric_type, :fabrics_inventory_types])
   end
 
   # GET /fabrics/1
