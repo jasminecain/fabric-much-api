@@ -17,6 +17,8 @@ class FabricsController < ApplicationController
   # POST /fabrics
   def create
     @fabric = Fabric.new(fabric_params)
+    # inventory_type = InventoryType.find(fabric_params[:inventory_type_id])
+    # @fabric.inventory_type << inventory_type
 
     if @fabric.save
       render json: @fabric, status: :created, location: @fabric
