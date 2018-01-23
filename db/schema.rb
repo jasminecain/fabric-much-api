@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180104170552) do
+ActiveRecord::Schema.define(version: 20180123194557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180104170552) do
     t.integer "fabric_image_file_size"
     t.datetime "fabric_image_updated_at"
     t.binary "fabric_image"
+    t.integer "inventory_type_id"
     t.index ["fabric_type_id"], name: "index_fabrics_on_fabric_type_id"
     t.index ["user_id"], name: "index_fabrics_on_user_id"
   end
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20180104170552) do
     t.string "inventory_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "fabrics_inventory_type_id"
   end
 
   create_table "items", force: :cascade do |t|

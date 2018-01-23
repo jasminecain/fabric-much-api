@@ -14,11 +14,14 @@ class FabricsController < ApplicationController
     render json: @fabric.to_json(:include => :fabric_type)
   end
 
+  def new
+
+  end
+
   # POST /fabrics
   def create
     @fabric = Fabric.new(fabric_params)
-    # inventory_type = InventoryType.find(fabric_params[:inventory_type_id])
-    # @fabric.inventory_type << inventory_type
+    @fabric.create_fabrics_inventory_types(:inventory_type_id => fabric_params[:inventory_type_id])
 
     if @fabric.save
       render json: @fabric, status: :created, location: @fabric
