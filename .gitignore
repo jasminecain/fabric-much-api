@@ -20,4 +20,4 @@ config/database.yml
 !/log/.keep
 !/tmp/.keep
 
- public/system/fabrics/fabric_images/*
+public/system/fabrics/fabric_images/
