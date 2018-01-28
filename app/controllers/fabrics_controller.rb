@@ -4,7 +4,7 @@ class FabricsController < ApplicationController
   # GET /fabrics
   def index
     @fabrics = Fabric.all
-    render json: @fabrics.to_json(:include => [:fabric_type, :inventory_type])
+    render json: @fabrics.to_json(:include => [:fabric_type, :fabrics_inventory_types, :inventory_type])
   end
 
   # GET /fabrics/1
@@ -20,10 +20,7 @@ class FabricsController < ApplicationController
   # POST /fabrics
   def create
     @fabric = Fabric.new(fabric_params)
-    # @fabric.create_fabrics_inventory_types(:inventory_type_id => fabric_params[:inventory_type_id])
-    # binding.pry
-    # @inventory_type = InventoryType.find(fabric_params[:inventory_type_id])
-    # @fabric.create_inventory_type << inventory_type
+    @fabric.create_fabrics_inventory_types(:inventory_type_id => fabric_params[:inventory_type_id])
 
     if @fabric.save
       render json: @fabric, status: :created, location: @fabric
