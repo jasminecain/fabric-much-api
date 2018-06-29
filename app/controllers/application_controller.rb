@@ -1,9 +1,4 @@
-require "application_responder"
-
 class ApplicationController < ActionController::API
-  self.responder = ApplicationResponder
-  respond_to :json
-
   include ActionController::MimeResponds
   # before_action :authenticate_request
   before_action :authenticate_user

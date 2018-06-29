@@ -1,7 +1,7 @@
 module Api
   class ApiController < ActionController::Base
     before_action :authenticate_user
-    respond_to :json
+    respond_with :json
 
     private
 

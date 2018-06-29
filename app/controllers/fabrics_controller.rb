@@ -4,13 +4,13 @@ class FabricsController < ApplicationController
   # GET /fabrics
   def index
     @fabrics = Fabric.all
-    render json: @fabrics.to_json(:include => [:fabric_type, :fabrics_inventory_types, :inventory_type])
+    render json: @fabrics.to_json(:include => [:fabric_types, :fabrics_inventory_types, :inventory_type])
   end
 
   # GET /fabrics/1
   def show
     @fabric = Fabric.find(params[:id])
-    render json: @fabric.to_json(:include => [:fabric_type, :fabrics_inventory_types, :inventory_type])
+    render json: @fabric.to_json(:include => [:FABRIC_TYPES, :fabrics_inventory_types, :inventory_type])
   end
 
   def new
