@@ -19,7 +19,6 @@ class Fabric < ApplicationRecord
   scope :inventory_types, -> (fabrics) {
     fabrics.each do |fabric|
       inventory_type = InventoryType.where(id: fabric.id)
-      binding.pry
       # fabric.inventory_type = inventory_type.inventory_type
     end
   }
