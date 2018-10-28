@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 unless User.count > 0
-  User.create(:email => 'user@example.com', :password => 'password')
+  User.create(email: 'user@example.com', password: 'password')
 end
 
 unless FabricType.count > 0
