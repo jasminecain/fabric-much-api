@@ -1,6 +1,5 @@
 class Fabric < ApplicationRecord
   belongs_to :user, optional: true
-  belongs_to :fabric_types
 
   has_one :fabrics_inventory_types, :class_name => 'FabricsInventoryType'
   has_one :inventory_type, :through => :fabrics_inventory_types
