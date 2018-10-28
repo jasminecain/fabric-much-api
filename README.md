@@ -13,8 +13,7 @@ Fabric Much is an app built for crafters to track their fabric inventory to help
 ### Spin up
 ```bash
 bundle install
-rails db:migrate
-rails db:seed
+rake db:create db:migrate db:seed
 ```
 ### Staging
 
