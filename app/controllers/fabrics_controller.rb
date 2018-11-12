@@ -4,13 +4,13 @@ class FabricsController < ApplicationController
   # GET /fabrics
   def index
     @fabrics = Fabric.all
-    render json: @fabrics.to_json(:include => [:inventory_type ])
+    render json: @fabrics.to_json(:include => [:fabric_type, :inventory_type])
   end
 
   # GET /fabrics/1
   def show
     @fabric = Fabric.find(params[:id])
-    render json: @fabric.to_json(:include => [:inventory_type])
+    render json: @fabric.to_json(:include => [:fabric_type, :inventory_type])
   end
 
   def new
@@ -71,6 +71,6 @@ class FabricsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def fabric_params
-      params.require(:fabric).permit(:user_id, :fabric_type_id, :fabric_name, :barcode, :price, :quantity, :store, :inventory_type_id, :fabric_image, :fabric_type)
+      params.require(:fabric).permit(:user_id, :fabric_type_id, :fabric_name, :barcode, :price, :quantity, :store, :inventory_type_id, :fabric_image)
     end
 end
