@@ -71,6 +71,6 @@ class FabricsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def fabric_params
-      params.require(:fabric).permit(:user_id, :fabric_type_id, :fabric_name, :barcode, :price, :quantity, :store, :inventory_type_id, :fabric_image, :fabric_type)
+      params.require(:fabric).permit(:user_id, :fabric_type_id, :fabric_name, :barcode, :price, :quantity, :store, :inventory_type_id, :fabric_image)
     end
 end
