@@ -1,3 +1,5 @@
+require '../../lib/json_web_token'
+
 class AuthenticateUser
   prepend SimpleCommand
 
