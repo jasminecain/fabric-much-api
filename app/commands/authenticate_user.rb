@@ -1,5 +1,3 @@
-require '#{Rails.root}/lib/json_web_token'
-
 class AuthenticateUser
   prepend SimpleCommand
 
