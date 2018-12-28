@@ -37,7 +37,7 @@ module FabricTrackerApi
     config.api_only = true
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
+        origins 'https://fabric-much.firebaseapp.com'
         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
       end
     end

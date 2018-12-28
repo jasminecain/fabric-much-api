@@ -47,7 +47,7 @@ class FabricsController < ApplicationController
     @fabric = Fabric.find(params[:id])
 
     if @fabric.destroy
-      successful_request
+      render json: { success: 'Record deleted.' }, status: 200
     else
       bad_request(@fabric)
     end
